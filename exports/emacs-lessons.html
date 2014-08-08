@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Emacs Lesson 1</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Emacs Lesson 1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-08-08T12:47+0200"/>
+<meta name="author" content="Arne Brasseur"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Emacs Lesson 1</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Lesson 1</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Keybindings Cheatsheet</a></li>
+<li><a href="#sec-1-2">1.2 Theory</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Emacs</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 Lesson 2</a>
+<ul>
+<li><a href="#sec-2-1">2.1 UGens</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 Selection of Ugens: Overview</a></li>
+<li><a href="#sec-2-1-2">2.1.2 A simple synth</a></li>
+<li><a href="#sec-2-1-3">2.1.3 Synths and instruments</a></li>
+<li><a href="#sec-2-1-4">2.1.4 A modulated synth</a></li>
+<li><a href="#sec-2-1-5">2.1.5 Local variables with let blocks</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Links</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Lesson 1</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Keybindings Cheatsheet</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left"></th><th scope="col" class="left">Getting out</th><th scope="col" class="left"></th></tr>
+</thead>
+<tbody>
+<tr><td class="left">C-x C-c</td><td class="left">Exit emacs</td><td class="left">save-buffers-kill-terminal</td></tr>
+<tr><td class="left">C-g</td><td class="left">Cancel running or partially typed command</td><td class="left">keyboard-quit</td></tr>
+<tr><td class="left">q</td><td class="left">Close window (in read only buffers)</td><td class="left">quit-window</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Working with files</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-x C-f</td><td class="left">find (open) file</td><td class="left">find-file</td></tr>
+<tr><td class="left">C-x k</td><td class="left">kill (close) buffer</td><td class="left">kill-buffer</td></tr>
+<tr><td class="left">C-x C-s</td><td class="left">Save</td><td class="left">save-buffer</td></tr>
+<tr><td class="left">C-x s</td><td class="left">Save All</td><td class="left">save-some-buffers</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Working with windows</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-x 0</td><td class="left">Minimize window</td><td class="left">delete-window</td></tr>
+<tr><td class="left">C-x 1</td><td class="left">Maximize window</td><td class="left">delete-other-window</td></tr>
+<tr><td class="left">C-x 2</td><td class="left">Split window horizontally</td><td class="left">split-window-below</td></tr>
+<tr><td class="left">C-x 3</td><td class="left">Split window vertically</td><td class="left"></td></tr>
+<tr><td class="left">C-x o</td><td class="left">Go to other window</td><td class="left">other-window</td></tr>
+<tr><td class="left">C-x b</td><td class="left">Switch to specific buffer</td><td class="left">ido-switch-buffer</td></tr>
+<tr><td class="left">C-x C-b</td><td class="left">List all buffers</td><td class="left">list-buffers</td></tr>
+<tr><td class="left">S-&lt;arrows&gt;</td><td class="left">Move around multiple windows</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Getting help</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-h k</td><td class="left">Describe key</td><td class="left">describe-key</td></tr>
+<tr><td class="left">C-h f</td><td class="left">Describe function/command</td><td class="left">describe-function</td></tr>
+<tr><td class="left">C-h t</td><td class="left">Open tutorial</td><td class="left">help-with-tutorial</td></tr>
+<tr><td class="left">C-h K</td><td class="left">Show manual for key command</td><td class="left">Info-goto-emacs-key-command-node</td></tr>
+<tr><td class="left">C-h m</td><td class="left">Describe current major and minor modes</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Copy paste</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-SPC</td><td class="left">"start selecting text"</td><td class="left">set-mark-command</td></tr>
+<tr><td class="left">C-w</td><td class="left">"Cut"</td><td class="left">kill-region</td></tr>
+<tr><td class="left">M-w</td><td class="left">"Copy"</td><td class="left">kill-ring-save</td></tr>
+<tr><td class="left">C-y</td><td class="left">"Paste" (yank)</td><td class="left">yank</td></tr>
+<tr><td class="left"></td><td class="left">"Paste previous ones" (cycle)</td><td class="left">yank-pop</td></tr>
+<tr><td class="left">C-k</td><td class="left">"Cut till end of line" (repeat to kill mutliple lines)</td><td class="left">kill-line</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Working with Lisps</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-x C-e</td><td class="left">Evaluate previous expression</td><td class="left">eval-last-sexp</td></tr>
+<tr><td class="left">C-M-x</td><td class="left">Evaluate outer expression</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Clojure</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">C-c M-j</td><td class="left">Start a REPL in the current project</td><td class="left">cider-jack-in</td></tr>
+<tr><td class="left">C-c M-n</td><td class="left">Switch to current namespace</td><td class="left">cider-repl-set-ns</td></tr>
+<tr><td class="left">C-c M-c</td><td class="left">Connect to a REPL already running in a terminal</td><td class="left">cider-connect</td></tr>
+<tr><td class="left"></td><td class="left">Stop the REPL</td><td class="left">cider-quit</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Theory</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Emacs</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<ul>
+<li id="sec-1-2-1-1">Function, Commands, Key bindings<br/>
+
+<p>
+     Emacs is essentially a virtual machine that runs Lisp code. The editor functionality
+     is written in Lisp, and other "apps" can be created that run on the Emacs
+     platform. (Try <code>M-x tetris</code> or <code>M-x doctor</code>). This is why Emacs is praised for its
+     extensibility, you can program the editor itself from within the editor.
+</p>
+<p>
+     To do so you define functions. Functions that are meant to be executed by the user are
+     called commands, they have to have <code>(interaction)</code> as the first expression within the
+     function body.
+</p>
+<p>
+     You can try this in the <b>scratch</b> buffer that Emacs starts with.
+</p>
+
+
+
+<pre class="example">(defun go-down-five-lines ()
+       (interactive)
+       (forward-line 5))
+</pre>
+
+
+<p>
+     Put your cursor after the last closing parantheses and type <code>C-x C-e</code>. Now you've
+     executed the function definition, meaning the function (command) is now defined. You
+     can execute it with <code>M-x go-down-five-lines</code>.
+</p>
+<p>
+     To be more useful we can bind it to a key.
+</p>
+
+
+
+<pre class="example">(global-set-key (kbd "&lt;f9&gt;") 'go-down-five-lines)
+</pre>
+
+
+<p>
+     Is this case we set a global key binding, so we can use the key to invoke the command
+     from anywhere in Emacs.  Some bindings are specific to a certain context, some
+     commands might only be active when editing Lisp files, or Ruby files, or when viewing
+     the contents of directories.
+</p>
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-1-2">Help<br/>
+
+<p>
+     Emacs has various help systems built-in, you should be able to learn everything about
+     Emacs from within Emacs. All these help commands are bound to key combinations
+     starting with <code>C-h</code>, for example, <code>C-h f</code> will prompt for a function. You can find out
+     what it does, and what key, if any, it is bound to. Other notable help commands are
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">C-h ?</td><td class="left">List all help commands</td><td class="left">help-for-help</td></tr>
+<tr><td class="left">C-h k</td><td class="left">Describe key</td><td class="left">describe-key</td></tr>
+<tr><td class="left">C-h K</td><td class="left">Show manual for key</td><td class="left">Info-goto-emacs-key-command-node</td></tr>
+<tr><td class="left">C-h i</td><td class="left">Open the Emacs manual</td><td class="left">info</td></tr>
+<tr><td class="left">C-h t</td><td class="left">Open the (pretty old school) tutorial</td><td class="left">help-with-tutorial</td></tr>
+</tbody>
+</table>
+
+
+<p>
+     Exercises
+</p>
+<ul>
+<li>What does the command <code>zap-to-char</code> do?
+</li>
+<li>What key is it bound to?
+</li>
+<li>Try using it
+</li>
+<li>What command is bound to the key <code>M-SPC</code>? (meta-space)
+</li>
+<li>What does it do?
+</li>
+<li>Jump to its description in the manual.
+</li>
+<li>Try using it
+<ul>
+<li>In the cheat sheet at the top some keybindings or command names are missing, look them and fill them in
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Lesson 2</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> UGens</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+   UGens or "Unit Generators" are building blocks for synths and sound processing. You can
+   think of them as little boxes with inputs and outputs. By calling the function you
+   create one such box. To plug a virtual cable from one block to another, you pass the
+   first as argument to the second.
+</p>
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Selection of Ugens: Overview</h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left"></th><th scope="col" class="left">Source - Oscillators</th><th scope="col" class="left">Arguments</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">sin-osc</td><td class="left">Sine wave</td><td class="left">frequency</td></tr>
+<tr><td class="left">saw</td><td class="left">Sawtooth wave</td><td class="left">frequency</td></tr>
+<tr><td class="left">square</td><td class="left">Square wave</td><td class="left">frequency</td></tr>
+<tr><td class="left">triangle</td><td class="left">Triangle wave</td><td class="left">frequency</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Source - Other</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">mouse-x</td><td class="left">Uses mouse position as signal</td><td class="left">low-value, high-value</td></tr>
+<tr><td class="left">mouse-y</td><td class="left">Uses mouse position as signal</td><td class="left">low-value, high-value</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Transformers</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">+</td><td class="left">add signals together</td><td class="left">signals or numbers</td></tr>
+<tr><td class="left">*</td><td class="left">Make louder by certain ratio</td><td class="left">signals or numbers</td></tr>
+<tr><td class="left">/</td><td class="left">Make more quiet by certain ratio</td><td class="left">signals or numbers</td></tr>
+<tr><td class="left">mix</td><td class="left">mixes signals together, like + but averages the volume</td><td class="left">signals or numbers</td></tr>
+<tr><td class="left">midicp</td><td class="left">Convert from midi note number to frequency</td><td class="left">note number</td></tr>
+<tr><td class="left">round</td><td class="left">Round up/down to nearest multiple</td><td class="left">multiple to round to</td></tr>
+</tbody>
+<tbody>
+<tr><td class="left"></td><td class="left">Sinks</td><td class="left"></td></tr>
+</tbody>
+<tbody>
+<tr><td class="left">out</td><td class="left">output signal to a bus, 0 is the sound card</td><td class="left">bus, signal</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> A simple synth</h4>
+<div class="outline-text-4" id="text-2-1-2">
+
+
+<p>
+    The simplest synth we can make is one that sends a sine wave to the output. The sine
+    wave generator has one input, which determines its frequency. For now we'll let it
+    output a fixed frequency, so we pass it a number.
+</p>
+<p>
+    The output of <code>sin-osc</code> we pass to <code>out</code>, it's as if we've plugged a virtual cable
+    from one to the other.
+</p>
+<p>
+    Now that the circuitry is all connected we need to be able to start it. We wrap it in
+    a call to <code>synth</code>. Think of <code>synth</code> as a box with a button. When we press the button,
+    the synth starts to play. In other words, the return value of <code>synth</code> is a
+    function. When we invoke that function, the synth starts to play.
+</p>
+
+
+
+<pre class="example">(def my-first-synth
+  (synth
+   (out 0 (sin-osc 440))))
+
+;; now start it
+(my-first-synth)
+
+;; and stop it again
+(kill my-first-synth)
+
+;; you can also use (stop), which stops all running synths
+</pre>
+
+
+
+
+<p>
+   <img src="my-first-synth.svg"  alt="my-first-synth.svg" />
+</p>
+<p>
+   The red blocks and arrows deal with audio signals, the blue ones are control
+   signals. We'll have more to say about those later on.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Synths and instruments</h4>
+<div class="outline-text-4" id="text-2-1-3">
+
+
+<p>
+   Now that we've made it this far, we'll refactor our synth in two easy steps. Instead of
+   creating the synth, and then binding it to a variable with def, we can do both in one
+   go with overtone's <code>defsynth</code> macro
+</p>
+
+
+
+<pre class="example">(defsynth my-first-synth []
+  (out 0 (sin-osc 440)))
+</pre>
+
+
+<p>
+   A synth that plays sounds directly to the audio output is called an instrument, and we
+   can define it using <code>definst</code>.
+</p>
+
+
+
+<pre class="example">(definst my-first-synth []
+  (sin-osc 440))
+</pre>
+
+
+<p>
+   This code is equivalent to the above, but concise and expressive. It's not much of an
+   instrument however, it only plays a single tone! Let's fix that. <code>defsynth</code> and
+   <code>definst</code> allow us to define arguments, so instead of hard coding the 440Hz, we can
+   pass that in from the outside.
+</p>
+
+
+
+<pre class="example">(definst my-first-synth [frequency 440] ; single argument, frequency, with a default of 440
+  (sin-osc frequency))
+
+;; All of these are now equivalent
+
+(my-first-synth)           ; Use the default, 440
+(my-first-synth 440)       ; Use a positional argument: the first argument is the frequency
+(my-first-synth :freq 440) ; Use a keyword argument
+
+;; Now we can play different tones
+
+(my-first-synth 587)
+(my-first-synth 880)
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> A modulated synth</h4>
+<div class="outline-text-4" id="text-2-1-4">
+
+
+<p>
+   So far we've used numbers for the frequency, but we can also use a control signal to
+   vary the frequency (i.e. height) of the tone.
+</p>
+
+
+
+<pre class="example">(defsynth wobble [freq 440 speed 1]
+  (sin-osc (+ freq (* freq (sin-osc speed)))))
+</pre>
+
+
+
+
+<p>
+    <img src="wobble.svg"  alt="wobble.svg" />
+</p>
+<p>
+    Basic oscillators like <code>sin-osc</code> generate a signal that goes up and down between 0
+    and 1. When we multiply this signal with 440, and add 440, we get a signal that goes
+    up and down between 440 and 880. We feed this into the "frequency" input of the second
+    <code>sin-osc</code>, so that it's tone goes up and down.
+</p>
+<p>
+    A little piece of travia, we have "modulated the frequency", so this could be called
+    frequency modulation, or FM. By modulating the amplitute (the loudness), we would get
+    AM. In FM and AM radio the frequency or amplitude of a carrier wave is modulated to
+    transfer a signal,
+</p>
+<p>
+    Notice how we used * and + to shift the range of a signal, in this case from 0-&gt;1 to
+    440-&gt;880. This is a common pattern, so overtone provides the mul-add ugen. Let's
+    refactor our synth.
+</p>
+
+
+
+<pre class="example">(defsynth wobble [freq 440 speed 1]
+  (sin-osc (mul-add (sin-osc speed) freq freq)))
+</pre>
+
+
+<p>
+    Try <code>wobble</code> with a couple different parameters.
+</p>
+
+
+
+<pre class="example">(wobble :freq 300 :speed 3)
+(wobble :freq 250 :speed 5)
+</pre>
+
+
+<p>
+    The parameters of a running synth can be manipulated with <code>ctl</code>
+</p>
+
+
+
+<pre class="example">(ctl wobble :speed 10)
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-5" class="outline-4">
+<h4 id="sec-2-1-5"><span class="section-number-4">2.1.5</span> Local variables with let blocks</h4>
+<div class="outline-text-4" id="text-2-1-5">
+
+
+<p>
+    So far our synths are still pretty simple, hopefully they will soon become more
+    interesting. To not get lost in a maze of parentheses, we can use perform intermediate
+    steps using a <code>let</code> block.
+</p>
+<p>
+    <code>let</code> is a Clojure construct, it takes a list of name-expression pairs, and one or
+    more code expressions. The expressions in the list are evaluated, and the results are
+    made available to the following code by the given names.
+</p>
+<p>
+    An example should proof to be illuminating:
+</p>
+
+
+
+<pre class="example">(let [x 3
+      y 9]
+  (+ x y))
+
+;; =&gt; 12
+</pre>
+
+
+<p>
+    We provided a value for <code>x</code>, 3, and one for <code>y</code>, 9, then used <code>x</code> and <code>y</code> to calculate
+    their sum.
+</p>
+<p>
+    We can give any number of names, and we can use names that were previously defined to
+    derive new values. We can put several code expressions after the definitions. They
+    will be executed one by one (presumably for side effects). The return value of the
+    last expression is the return value of the let block.
+</p>
+
+
+
+<pre class="example">(let [x 7
+      y 9
+      x_and_y (+ x y)] ; derived x_and_y from x and y
+
+  (println x_and_y)
+  (* 3 x_and_y))
+</pre>
+
+
+
+<pre class="example">(definst mouse-vibes-1 []
+  (let [note-number         (mouse-x 55 75)
+        note-number-rounded (round note-number 2)
+        frequency           (midicps note-number-rounded)]
+    (sin-osc frequency)))
+</pre>
+
+
+<p>
+    Homework:
+</p><ul>
+<li>Try to figure out what's going on with mouse-vibes-1
+</li>
+<li>Combine the UGens you know so far to create your own synths
+</li>
+<li>Try the examples in overtone, escpecially the "composition" ones
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">git clone https://github.com/overtone/overtone
+</pre>
+
+
+<p>
+    The examples are under <code>src/overtone/examples/compositions/</code>. Open the file in emacs,
+    then do <code>M-x cider-eval-buffer</code>. Try to change things, see what happens. Remember to
+    just do <code>(stop)</code> in case of emergency :)
+</p>
+<p>
+    Tip: Type <code>C-c C-d</code> when your cursor is on a function name to see the documentation.
+</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Links</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=yY1FSsUV-8c">{youtube} OSCON Concert with Extempore</a>
+</li>
+<li><a href="https://github.com/allenj12/jam1/blob/master/src/jam1/core.clj">Overtone port of the Extempore example</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-08-08T12:47+0200</p>
+<p class="author">Author: Arne Brasseur</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
